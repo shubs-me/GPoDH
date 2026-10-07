@@ -1,6 +1,15 @@
 {
   "videos": [
     {
+      "id": "44",
+      "slug": "the-future-of-ai-in-global-health-research",
+      "title": "The future of AI in Global Health research",
+      "description": "What a pleasure it was to have Rohit Malpani and Peiling Yap on the show, editors of a new journal about AI in Global health. This one is for researchers, implementers of digital and AI tools in low resource settings. We cover: The challenges for people in the so called Global South to have a leading voice in academia.…",
+      "youtubeVideoId": "byI9kHOpG4I",
+      "date": "Oct 2026",
+      "tags": []
+    },
+    {
       "id": "43",
       "slug": "why-no-child-and-maternal-health-innovation-hot-take",
       "title": "Why no child and maternal health innovation? Hot take!",
