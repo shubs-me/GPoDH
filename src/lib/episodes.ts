@@ -57,7 +57,17 @@ export interface Episode {
 // the build (every consumer treats them as arrays).
 export const episodes: Episode[] = (
   (episodesData as { episodes: unknown[] }).episodes as Partial<Episode>[]
-).map((e) => ({ ...e, themes: e.themes ?? [], tags: e.tags ?? [] })) as Episode[]
+).map((e) => ({
+  ...e,
+  themes: e.themes ?? [],
+  tags: e.tags ?? [],
+  // Transistor's share-page link (/s/ID) refuses to load in an iframe; the
+  // embeddable form is /e/ID. Accept either when pasted into the CMS.
+  transistorUrl: e.transistorUrl?.replace(
+    /^(https?:\/\/share\.transistor\.fm)\/s\//,
+    '$1/e/'
+  ),
+})) as Episode[]
 
 export const ALL_THEMES = [...new Set(episodes.flatMap((e) => e.themes))].sort()
 export const ALL_COUNTRIES = [...new Set(episodes.map((e) => e.country))].sort()
