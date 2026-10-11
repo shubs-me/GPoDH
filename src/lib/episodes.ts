@@ -52,8 +52,12 @@ export interface Episode {
 // The list lives in src/data/episodes.json (under the "episodes" key) so it can
 // be edited in the CMS (see public/admin) and by hand. Order is preserved as
 // authored; newest first.
-export const episodes: Episode[] = (episodesData as { episodes: unknown[] })
-  .episodes as unknown as Episode[]
+// The CMS drops empty list fields from the JSON, so themes/tags can be missing
+// on a freshly added entry. Default them so one incomplete save can't break
+// the build (every consumer treats them as arrays).
+export const episodes: Episode[] = (
+  (episodesData as { episodes: unknown[] }).episodes as Partial<Episode>[]
+).map((e) => ({ ...e, themes: e.themes ?? [], tags: e.tags ?? [] })) as Episode[]
 
 export const ALL_THEMES = [...new Set(episodes.flatMap((e) => e.themes))].sort()
 export const ALL_COUNTRIES = [...new Set(episodes.map((e) => e.country))].sort()

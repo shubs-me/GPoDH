@@ -180,10 +180,12 @@ collections:
               - name: themes
                 label: Themes
                 widget: list
+                min: 1
                 field: { name: theme, label: Theme, widget: string }
               - name: tags
                 label: Tags
                 widget: list
+                min: 1
                 field: { name: tag, label: Tag, widget: string }
               - { name: pullQuote, label: Pull quote, widget: text, required: false }
               - { name: bio, label: Guest bio, widget: text, required: false }
