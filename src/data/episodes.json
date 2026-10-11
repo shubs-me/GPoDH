@@ -1,6 +1,25 @@
 {
   "episodes": [
     {
+      "episodeNumber": 27,
+      "slug": "https://www.gpodh.org/episodes/future-ai-research",
+      "featured": true,
+      "guestRole": "Co-editor, AI and Global Health Journal, RSTMH",
+      "date": "Oct 2026",
+      "country": "Global",
+      "guest": "Peiling Yap",
+      "title": "The future of AI in Global Health research",
+      "artworkUrl": "/guests/healthai-peiling-yap-photo.jpg",
+      "id": "35",
+      "description": "What a pleasure it was to have Rohit Malpani and Peiling Yap on the show, editors of a new journal about AI in Global health. \n\nThis one is for researchers, implementers of digital and AI tools in low resource settings. \n\nWe cover:\nThe challenges for people in the so called Global South to have a leading voice in academia. \nHype and reality on AI: premiums on speed to publish and oneupmanship vs investigating what really makes things work\nWhy publishing things that went wrong or unexpectedly is needed even more\nHow academic journals and publishing can do better\nHow people in digital health and AI in healthcare should approach evidence generation\nThe future of academic publishing in a world increasingly short of attention, patience and deep work\nHow Ronny Chieng’s Harvard address can make us think critically about what we should be optimising towards. \n\nPlus what the new RSTM AI in Global Health journal is looking for and what type of papers most excite them\n\nLinks!\nRonny Chieng Harvard address. Seriously, watch it.\nIDRC funded AI4GH work mentioned by Peiling, also published in a great special collection in npj Digial Medicine\nBig tech hiring philosophers article\nIndustry AI research article\nConversational agents are super communicative, not super intelligent article\n\nNew Video series!\nFinally, check out a brand new Youtube video series about Tech for Global health challenges. The first one is on Tuberculosis, with the Wellcome Trust, QureAI, AI Diagnostics, Community Health Impact Coalition and Audere.\n\nIf you liked this episode, share with people who would learn from it! And head over to gpodh.org and check out a few related ones. Leave us a review or send us a message. \n1. Evaluation Level up with Shay Soremekun\n2. Implementation 101 and how to fail well with Caroline Perrin\n\nWant to sponsor a deep dive episode? Get in touch at gpodh.org",
+      "guestFaces": [
+        {
+          "name": "Rohit Malpani",
+          "artworkUrl": "/guests/rohit-malpani-photo-.jpg"
+        }
+      ]
+    },
+    {
       "topics": [
         "Paper guidelines end up on shelves. Digital care pathways get to the bedside. Josh compares paper guidelines to an atlas and NoviGuide to Google Maps: built right, digital can adapt to what you actually have, flow with real clinical decisions, and stay available at 3am.",
         "Configuration, not customisation, is how you scale. Clinical guidelines differ in predictable ways. The real variation is at the site level: what drugs, equipment, and diagnostics are available. Build for that and you can scale without starting from scratch.",
@@ -2091,28 +2110,6 @@
       "artworkUrl": "/guests/dr-xiao-liu.jpg",
       "id": "9",
       "description": "A crucial conversation on one of the most pressing issues in global digital health: health data poverty. What it is, why it matters, and how we might begin to address it."
-    },
-    {
-      "slug": "https://www.gpodh.org/episodes/future-ai-research",
-      "featured": false,
-      "guestRole": "Co-editor, AI and Global Health Journal, RSTMH",
-      "date": "OCT 2026",
-      "guest": "Peiling Yap",
-      "title": "The future of AI in Global Health research",
-      "artworkUrl": "/guests/healthai-peiling-yap-photo.jpg",
-      "description": "What a pleasure it was to have Rohit Malpani and Peiling Yap on the show, editors of a new journal about AI in Global health. \n\nThis one is for researchers, implementers of digital and AI tools in low resource settings. \n\nWe cover:\nThe challenges for people in the so called Global South to have a leading voice in academia. \nHype and reality on AI: premiums on speed to publish and oneupmanship vs investigating what really makes things work\nWhy publishing things that went wrong or unexpectedly is needed even more\nHow academic journals and publishing can do better\nHow people in digital health and AI in healthcare should approach evidence generation\nThe future of academic publishing in a world increasingly short of attention, patience and deep work\nHow Ronny Chieng’s Harvard address can make us think critically about what we should be optimising towards. \n\nPlus what the new RSTM AI in Global Health journal is looking for and what type of papers most excite them\n\nLinks!\nRonny Chieng Harvard address. Seriously, watch it.\nIDRC funded AI4GH work mentioned by Peiling, also published in a great special collection in npj Digial Medicine\nBig tech hiring philosophers article\nIndustry AI research article\nConversational agents are super communicative, not super intelligent article\n\nNew Video series!\nFinally, check out a brand new Youtube video series about Tech for Global health challenges. The first one is on Tuberculosis, with the Wellcome Trust, QureAI, AI Diagnostics, Community Health Impact Coalition and Audere.\n\nIf you liked this episode, share with people who would learn from it! And head over to gpodh.org and check out a few related ones. Leave us a review or send us a message. \n1. Evaluation Level up with Shay Soremekun\n2. Implementation 101 and how to fail well with Caroline Perrin\n\nWant to sponsor a deep dive episode? Get in touch at gpodh.org",
-      "guestFaces": [
-        {
-          "name": "Rohit Malpani",
-          "artworkUrl": "/guests/rohit-malpani-photo-.jpg"
-        }
-      ]
-    },
-    {
-      "featured": false
-    },
-    {
-      "featured": false
     }
   ]
 }
