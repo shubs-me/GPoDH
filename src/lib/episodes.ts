@@ -9,6 +9,7 @@ export interface Timestamp {
 // multi-guest episode several individual faces instead of one combined photo.
 export interface GuestFace {
   name: string
+  role?: string              // this guest's own job title, shown on the episode page
   artworkUrl: string
   artworkPosition?: string   // CSS object-position override, e.g. 'top center'
 }
@@ -26,6 +27,7 @@ export interface Episode {
   artworkUrl?: string
   artworkPosition?: string   // CSS object-position override for the single Guest photo
   guestFaces?: GuestFace[]   // multi-guest: individual faces shown in the /episodes cloud
+  splitHeroPhotos?: boolean  // show the guestFaces side by side at the top of the episode page
   themes: string[]
   country: string
   tags: string[]

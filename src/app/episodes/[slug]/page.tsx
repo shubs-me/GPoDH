@@ -44,6 +44,12 @@ export default async function EpisodePage({ params }: Props) {
   const episode = episodes.find((e) => e.slug === slug)
   if (!episode) notFound()
 
+  // Co-hosted episodes: show each guest with their own job title when any is set
+  const guestRoles =
+    (episode.guestFaces?.length ?? 0) > 1 && episode.guestFaces!.some((g) => g.role)
+      ? episode.guestFaces!
+      : null
+
   // Sort episodes by episode number so prev/next are always sequential
   const epSortKey = (n: number | string) => {
     const s = String(n)
@@ -238,11 +244,22 @@ export default async function EpisodePage({ params }: Props) {
                 marginBottom: '0.5rem',
               }}
             >
-              <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
-                {episode.guest}
-              </strong>
-              {' · '}
-              {episode.guestRole}
+              {guestRoles ? (
+                guestRoles.map((g) => (
+                  <span key={g.name} style={{ display: 'block' }}>
+                    <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{g.name}</strong>
+                    {g.role && <> {' · '}{g.role}</>}
+                  </span>
+                ))
+              ) : (
+                <>
+                  <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
+                    {episode.guest}
+                  </strong>
+                  {' · '}
+                  {episode.guestRole}
+                </>
+              )}
             </p>
 
             {/* Meta */}
@@ -333,7 +350,30 @@ export default async function EpisodePage({ params }: Props) {
               border: '1px solid var(--border)',
             }}
           >
-            {episode.artworkUrl ? (
+            {episode.splitHeroPhotos && (episode.guestFaces?.length ?? 0) > 1 ? (
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'grid',
+                  gridTemplateColumns: `repeat(${episode.guestFaces!.length}, 1fr)`,
+                  gap: '2px',
+                  background: 'var(--border)',
+                }}
+              >
+                {episode.guestFaces!.map((g) => (
+                  <div key={g.name} style={{ position: 'relative' }}>
+                    <Image
+                      src={g.artworkUrl}
+                      alt={g.name}
+                      fill
+                      sizes="210px"
+                      style={{ objectFit: 'cover', objectPosition: g.artworkPosition ?? 'center top' }}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : episode.artworkUrl ? (
               <Image
                 src={episode.artworkUrl}
                 alt={episode.title}
@@ -658,7 +698,9 @@ export default async function EpisodePage({ params }: Props) {
                   textTransform: 'uppercase',
                 }}
               >
-                {episode.guestRole}
+                {guestRoles
+                  ? guestRoles.map((g) => (g.role ? `${g.name}: ${g.role}` : g.name)).join(' · ')
+                  : episode.guestRole}
               </p>
             </div>
             <div>

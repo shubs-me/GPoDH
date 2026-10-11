@@ -174,8 +174,10 @@ collections:
                   single-guest episodes.
                 fields:
                   - { name: name, label: Guest name, widget: string }
+                  - { name: role, label: 'Job title (shown on the episode page)', widget: string, required: false }
                   - { name: artworkUrl, label: Photo, widget: image, choose_url: true }
                   - { name: artworkPosition, label: 'Photo position (optional, e.g. top center)', widget: string, required: false }
+              - { name: splitHeroPhotos, label: 'Show guest photos side by side at the top of the episode page (needs the Extra guest faces list above)', widget: boolean, required: false, default: false }
               - { name: country, label: Country, widget: string }
               - name: themes
                 label: Themes

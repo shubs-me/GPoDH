@@ -12,6 +12,7 @@
       "date": "Oct 2026",
       "country": "Global",
       "guest": "Peiling Yap & Rohit Malpani",
+      "splitHeroPhotos": true,
       "title": "The future of AI in Global Health research",
       "tags": [
         "AI",
@@ -23,6 +24,7 @@
       "guestFaces": [
         {
           "name": "Peiling Yap",
+          "role": "Co-editor, AI and Global Health Journal, RSTMH",
           "artworkUrl": "/guests/healthai-peiling-yap-photo.jpg"
         },
         {
