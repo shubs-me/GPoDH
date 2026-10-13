@@ -8,6 +8,7 @@ import EpisodeCard from '@/components/ui/EpisodeCard'
 import EmailSignupTile from '@/components/ui/EmailSignupTile'
 import SurpriseRoller from '@/components/ui/SurpriseRoller'
 import { Episode } from '@/lib/episodes'
+import { plainText } from '@/components/ui/RichText'
 import { expandQuery } from '@/lib/concept-map'
 
 interface EpisodeFilterProps {
@@ -722,7 +723,7 @@ export default function EpisodeFilter({ episodes, allThemes, allCountries }: Epi
                 {surpriseEpisode.guest} · {surpriseEpisode.guestRole}
               </p>
               <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', lineHeight: 1.65, margin: 0, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                {surpriseEpisode.description}
+                {plainText(surpriseEpisode.description)}
               </p>
 
               {/* Actions */}

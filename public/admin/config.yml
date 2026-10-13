@@ -159,7 +159,7 @@ collections:
               - { name: guestRole, label: Guest role, widget: string }
               - { name: date, label: 'Date (e.g. Apr 2026)', widget: string }
               - { name: duration, label: 'Duration (e.g. 1hr 8min)', widget: string, required: false }
-              - { name: description, label: Description, widget: text }
+              - { name: description, label: "Description (\"About this episode\" - paste formatted text here)", widget: markdown }
               - { name: artworkUrl, label: Guest photo, widget: image, required: false, choose_url: true }
               - name: guestFaces
                 label: 'Extra guest faces (multi-guest episodes only)'
@@ -190,7 +190,7 @@ collections:
                 min: 1
                 field: { name: tag, label: Tag, widget: string }
               - { name: pullQuote, label: Pull quote, widget: text, required: false }
-              - { name: bio, label: Guest bio, widget: text, required: false }
+              - { name: bio, label: Guest bio, widget: markdown, required: false }
               - name: topics
                 label: Key topics
                 widget: list
