@@ -239,7 +239,7 @@ collections:
                 required: false
                 options: ['talk', 'panel', 'explainer', 'clip', 'hot-take']
               - { name: duration, label: 'Duration (e.g. 12:34)', widget: string, required: false }
-              - { name: description, label: Description, widget: text }
+              - { name: description, label: "Description (\"About this video\" - paste formatted text here)", widget: markdown }
               - name: tags
                 label: Tags
                 widget: list

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import ShareButtons from '@/components/ui/ShareButtons'
 import VideoCard from '@/components/ui/VideoCard'
 import EmailSignup from '@/components/sections/EmailSignup'
+import RichText, { plainText } from '@/components/ui/RichText'
 import TranscriptToggle from '@/components/ui/TranscriptToggle'
 import { videos, CATEGORY_LABELS } from '@/lib/videos'
 import { videoTranscripts } from '@/lib/video-transcripts'
@@ -23,11 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const thumb = `https://i.ytimg.com/vi/${video.youtubeVideoId}/hqdefault.jpg`
   return {
     title: video.title, // root template appends "| Global Perspectives on Digital Health"
-    description: video.description,
+    description: plainText(video.description),
     openGraph: {
       type: 'video.other',
       title: video.title,
-      description: video.description,
+      description: plainText(video.description),
       images: [thumb],
     },
   }
@@ -169,7 +170,7 @@ export default async function VideoPage({ params }: Props) {
             >
               About this video
             </p>
-            <p
+            <RichText
               style={{
                 fontSize: '1.0625rem',
                 color: 'var(--text-secondary)',
@@ -177,7 +178,7 @@ export default async function VideoPage({ params }: Props) {
               }}
             >
               {video.description}
-            </p>
+            </RichText>
           </div>
 
           {video.tags && video.tags.length > 0 && (

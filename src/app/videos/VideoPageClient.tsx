@@ -11,6 +11,7 @@ import EmailSignupTile from '@/components/ui/EmailSignupTile'
 import SurpriseRoller from '@/components/ui/SurpriseRoller'
 import { videoTranscripts } from '@/lib/video-transcripts'
 import { expandQuery } from '@/lib/concept-map'
+import { plainText } from '@/components/ui/RichText'
 
 
 const ALL_CATEGORIES: VideoCategory[] = ['talk', 'panel', 'explainer', 'clip', 'hot-take']
@@ -299,7 +300,7 @@ export default function VideoPageClient() {
                 </h3>
                 <p style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, margin: 0,
                   display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                  {surpriseVideo.description}
+                  {plainText(surpriseVideo.description)}
                 </p>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flexShrink: 0 }}>
@@ -480,7 +481,7 @@ export default function VideoPageClient() {
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
               }}>
-                {featured.description}
+                {plainText(featured.description)}
               </p>
 
               {featured.tags && featured.tags.length > 0 && (
