@@ -8,7 +8,7 @@ import EmailSignup from '@/components/sections/EmailSignup'
 import TranscriptToggle from '@/components/ui/TranscriptToggle'
 import RelatedEpisodes from '@/components/ui/RelatedEpisodes'
 import ShareButtons from '@/components/ui/ShareButtons'
-import RichText from '@/components/ui/RichText'
+import RichText, { plainText } from '@/components/ui/RichText'
 import EpisodePlayer from '@/components/ui/EpisodePlayer'
 import { episodes } from '@/lib/episodes'
 import { PLATFORMS, SITE, SITE_URL } from '@/lib/constants'
@@ -27,11 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!episode) return {}
   return {
     title: episode.title, // root template appends "| Global Perspectives on Digital Health"
-    description: episode.description,
+    description: plainText(episode.description),
     openGraph: {
       type: 'article',
       title: episode.title,
-      description: episode.description,
+      description: plainText(episode.description),
       url: `${SITE_URL}/episodes/${episode.slug}`,
       ...(episode.artworkUrl && { images: [episode.artworkUrl] }),
     },
@@ -66,7 +66,7 @@ export default async function EpisodePage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'PodcastEpisode',
     name: episode.title,
-    description: episode.description,
+    description: plainText(episode.description),
     url: `${SITE_URL}/episodes/${episode.slug}`,
     ...(episode.episodeNumber && { episodeNumber: episode.episodeNumber }),
     ...(episode.artworkUrl && { image: episode.artworkUrl }),
@@ -530,7 +530,7 @@ export default async function EpisodePage({ params }: Props) {
             >
               About this episode
             </p>
-            <p
+            <RichText
               style={{
                 fontSize: '1.0625rem',
                 color: 'var(--text-secondary)',
@@ -539,7 +539,7 @@ export default async function EpisodePage({ params }: Props) {
               }}
             >
               {episode.description}
-            </p>
+            </RichText>
 
             {/* Theme tags */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: episode.pullQuote ? '2rem' : 0 }}>

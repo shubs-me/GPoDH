@@ -115,7 +115,8 @@ button {
 .richtext > :first-child { margin-top: 0; }
 .richtext > :last-child { margin-bottom: 0; }
 .richtext p { margin: 0 0 1rem; }
-.richtext ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+.richtext ul, .richtext ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+.richtext h3 { margin: 1.5rem 0 0.5rem; font-size: 1.1em; font-weight: 600; color: var(--text-primary); }
 .richtext li { margin: 0 0 0.35rem; }
 .richtext a { color: var(--accent-coral); text-decoration: underline; }
 

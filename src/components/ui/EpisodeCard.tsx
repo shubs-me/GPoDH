@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { plainText } from '@/components/ui/RichText'
 import { Episode } from '@/lib/episodes'
 
 interface EpisodeCardProps {
@@ -156,7 +157,7 @@ export default function EpisodeCard({ episode }: EpisodeCardProps) {
             flex: 1,
           }}
         >
-          {episode.description}
+          {plainText(episode.description)}
         </p>
 
         {/* CTA */}
