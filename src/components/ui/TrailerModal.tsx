@@ -2,11 +2,20 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import reusable from '@/data/site/reusable.json'
 
-const copy = reusable.trailer
+interface TrailerCopy {
+  youtubeId: string
+  thumbnail: string
+  thumbnailAlt: string
+}
 
-export default function TrailerModal() {
+// Accepts a bare video ID or any pasted YouTube link (watch, youtu.be, embed, shorts).
+function toYoutubeId(input: string): string {
+  const m = input.trim().match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([\w-]{11})/)
+  return m ? m[1] : input.trim()
+}
+
+export default function TrailerModal({ copy }: { copy: TrailerCopy }) {
   const [open, setOpen] = useState(false)
   const dialogRef = useRef<HTMLDialogElement>(null)
 
@@ -153,7 +162,7 @@ export default function TrailerModal() {
         <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
           {open && (
             <iframe
-              src={`https://www.youtube-nocookie.com/embed/${copy.youtubeId}?autoplay=1`}
+              src={`https://www.youtube-nocookie.com/embed/${toYoutubeId(copy.youtubeId)}?autoplay=1`}
               title="GPODH Trailer"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
               allowFullScreen

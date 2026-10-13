@@ -4,7 +4,7 @@ import { useState, useCallback, useMemo, useRef, useEffect, useDeferredValue, Fr
 import Link from 'next/link'
 import Image from 'next/image'
 import Fuse from 'fuse.js'
-import { videos, CATEGORY_LABELS, featuredVideo } from '@/lib/videos'
+import { videos, orderedVideos, CATEGORY_LABELS, featuredVideo } from '@/lib/videos'
 import type { VideoCategory } from '@/lib/videos'
 import VideoCard from '@/components/ui/VideoCard'
 import EmailSignupTile from '@/components/ui/EmailSignupTile'
@@ -15,7 +15,6 @@ import { plainText } from '@/components/ui/RichText'
 
 
 const ALL_CATEGORIES: VideoCategory[] = ['talk', 'panel', 'explainer', 'clip', 'hot-take']
-const TRAILER_ID = '29' // Always pinned to first grid position
 
 export default function VideoPageClient() {
   // ── Featured (flagged video, else newest) ────────────────────────────────
@@ -72,13 +71,10 @@ export default function VideoPageClient() {
   // ── Filtered results ──────────────────────────────────────────────────────
   const filteredVideos = useMemo(() => {
     const base = activeCategory
-      ? videos.filter(v => v.category === activeCategory)
-      : videos
+      ? orderedVideos.filter(v => v.category === activeCategory)
+      : orderedVideos
 
-    if (!deferredQuery.trim()) {
-      const trailer = videos.find(v => v.id === TRAILER_ID)
-      return trailer ? [trailer, ...base.filter(v => v.id !== TRAILER_ID)] : base
-    }
+    if (!deferredQuery.trim()) return base
 
     const scoreMap = new Map<string, number>()
     expandedTerms.forEach((term, i) => {
@@ -101,8 +97,7 @@ export default function VideoPageClient() {
       .filter(v => scoreMap.has(v.id))
       .sort((a, b) => (scoreMap.get(b.id) ?? 0) - (scoreMap.get(a.id) ?? 0))
 
-    const trailer = videos.find(v => v.id === TRAILER_ID)
-    return trailer ? [trailer, ...scored.filter(v => v.id !== TRAILER_ID)] : scored
+    return scored
   }, [deferredQuery, expandedTerms, fuse, transcriptIndex, activeCategory])
 
   // ── Surprise me — opens a random video in a modal ────────────────────────

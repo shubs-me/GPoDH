@@ -21,7 +21,12 @@
     "heading": "The perspectives of those innovating in underserved settings are sorely missing from digital health.",
     "body1": "The dominant narrative in digital health flows outward from the Global North. But the unmet need, and the extraordinary work being done to meet it, exists everywhere. GPODH exists to change that. The show brings together clinicians, founders, researchers, and policy makers who are doing real work in digital health in contexts that rarely make it onto the main stage.",
     "body2": "Every episode asks a version of the same question: what does it actually take to make digital health work for the communities that need it most?",
-    "trailerLabel": "Watch the trailer"
+    "trailerLabel": "Watch the trailer",
+    "trailer": {
+      "youtubeId": "ABmm7iO9sDc",
+      "thumbnail": "/shubs.webp",
+      "thumbnailAlt": "Shubs Upadhyay — GPODH host"
+    }
   },
   "showCards": [
     {
