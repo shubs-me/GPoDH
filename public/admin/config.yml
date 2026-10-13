@@ -218,8 +218,11 @@ collections:
         description: >-
           The video library. New uploads go live automatically via the daily
           sync (uncategorised) — use this to add the category and tags, paste a
-          transcript (which feeds search), or add a video by hand. Drag an entry
-          to the top to feature it, or tick "Featured".
+          transcript (which feeds search), or add a video by hand. Tick "Featured"
+          for the big slot at the top of /videos. To control the order of the
+          grid below it, tick "Pin first" on one video and/or give videos a
+          "Grid order" number; the position in this list only matters for
+          videos without a number.
         fields:
           - name: videos
             label: Videos
@@ -228,6 +231,8 @@ collections:
             summary: '{{fields.title}}'
             fields:
               - { name: featured, label: 'Featured (pin to top of /videos)', widget: boolean, required: false, default: false }
+              - { name: pinned, label: 'Pin first in the video grid (top left, ahead of everything else)', widget: boolean, required: false, default: false }
+              - { name: order, label: 'Grid order (optional number: 1 shows first, 2 next, and so on; blank = after numbered videos, in list order)', widget: number, required: false, value_type: int, min: 1 }
               - { name: title, label: Title, widget: string }
               - { name: slug, label: 'Slug (URL, no spaces)', widget: string }
               - { name: id, label: 'ID (unique)', widget: string }
@@ -239,7 +244,7 @@ collections:
                 required: false
                 options: ['talk', 'panel', 'explainer', 'clip', 'hot-take']
               - { name: duration, label: 'Duration (e.g. 12:34)', widget: string, required: false }
-              - { name: description, label: Description, widget: text }
+              - { name: description, label: "Description (\"About this video\" - paste formatted text here)", widget: markdown }
               - name: tags
                 label: Tags
                 widget: list
@@ -491,6 +496,13 @@ collections:
               - { name: body1, label: First paragraph, widget: markdown }
               - { name: body2, label: Second paragraph, widget: markdown }
               - { name: trailerLabel, label: Trailer label, widget: string }
+              - name: trailer
+                label: Trailer video (home page)
+                widget: object
+                fields:
+                  - { name: youtubeId, label: 'YouTube video link or ID', widget: string, hint: 'Paste the YouTube link (or just the 11-character ID after v=)' }
+                  - { name: thumbnail, label: Thumbnail image, widget: image, choose_url: true }
+                  - { name: thumbnailAlt, label: Thumbnail alt text, widget: string }
           - name: showCards
             label: Three question cards
             widget: list
@@ -619,7 +631,7 @@ collections:
         description: >-
           Shared blocks that appear on several pages — the email signup band,
           the subscribe pop-up, the host intro strip and bio pop-up, the
-          consulting footer strip, and the trailer video.
+          and the consulting footer strip.
         fields:
           - name: emailSignup
             label: Email signup band
@@ -671,13 +683,6 @@ collections:
               - { name: body, label: Body, widget: string }
               - { name: ctaText, label: Button text, widget: string }
               - { name: url, label: Button link, widget: string }
-          - name: trailer
-            label: Trailer video
-            widget: object
-            fields:
-              - { name: youtubeId, label: YouTube video ID, widget: string }
-              - { name: thumbnail, label: Thumbnail image, widget: image, choose_url: true }
-              - { name: thumbnailAlt, label: Thumbnail alt text, widget: string }
           - name: hostModal
             label: Host bio pop-up
             widget: object

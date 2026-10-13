@@ -286,7 +286,7 @@ export default function HomePage() {
               >
                 {about.trailerLabel}
               </p>
-              <TrailerModal />
+              <TrailerModal copy={about.trailer} />
             </ScrollReveal>
           </div>
 

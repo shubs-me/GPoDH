@@ -4,17 +4,17 @@ import { useState, useCallback, useMemo, useRef, useEffect, useDeferredValue, Fr
 import Link from 'next/link'
 import Image from 'next/image'
 import Fuse from 'fuse.js'
-import { videos, CATEGORY_LABELS, featuredVideo } from '@/lib/videos'
+import { videos, orderedVideos, CATEGORY_LABELS, featuredVideo } from '@/lib/videos'
 import type { VideoCategory } from '@/lib/videos'
 import VideoCard from '@/components/ui/VideoCard'
 import EmailSignupTile from '@/components/ui/EmailSignupTile'
 import SurpriseRoller from '@/components/ui/SurpriseRoller'
 import { videoTranscripts } from '@/lib/video-transcripts'
 import { expandQuery } from '@/lib/concept-map'
+import { plainText } from '@/components/ui/RichText'
 
 
 const ALL_CATEGORIES: VideoCategory[] = ['talk', 'panel', 'explainer', 'clip', 'hot-take']
-const TRAILER_ID = '29' // Always pinned to first grid position
 
 export default function VideoPageClient() {
   // ── Featured (flagged video, else newest) ────────────────────────────────
@@ -71,13 +71,10 @@ export default function VideoPageClient() {
   // ── Filtered results ──────────────────────────────────────────────────────
   const filteredVideos = useMemo(() => {
     const base = activeCategory
-      ? videos.filter(v => v.category === activeCategory)
-      : videos
+      ? orderedVideos.filter(v => v.category === activeCategory)
+      : orderedVideos
 
-    if (!deferredQuery.trim()) {
-      const trailer = videos.find(v => v.id === TRAILER_ID)
-      return trailer ? [trailer, ...base.filter(v => v.id !== TRAILER_ID)] : base
-    }
+    if (!deferredQuery.trim()) return base
 
     const scoreMap = new Map<string, number>()
     expandedTerms.forEach((term, i) => {
@@ -100,8 +97,7 @@ export default function VideoPageClient() {
       .filter(v => scoreMap.has(v.id))
       .sort((a, b) => (scoreMap.get(b.id) ?? 0) - (scoreMap.get(a.id) ?? 0))
 
-    const trailer = videos.find(v => v.id === TRAILER_ID)
-    return trailer ? [trailer, ...scored.filter(v => v.id !== TRAILER_ID)] : scored
+    return scored
   }, [deferredQuery, expandedTerms, fuse, transcriptIndex, activeCategory])
 
   // ── Surprise me — opens a random video in a modal ────────────────────────
@@ -299,7 +295,7 @@ export default function VideoPageClient() {
                 </h3>
                 <p style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, margin: 0,
                   display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                  {surpriseVideo.description}
+                  {plainText(surpriseVideo.description)}
                 </p>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flexShrink: 0 }}>
@@ -480,7 +476,7 @@ export default function VideoPageClient() {
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
               }}>
-                {featured.description}
+                {plainText(featured.description)}
               </p>
 
               {featured.tags && featured.tags.length > 0 && (

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Video } from '@/lib/videos'
 import { CATEGORY_LABELS } from '@/lib/videos'
+import { plainText } from '@/components/ui/RichText'
 
 const PALETTE = [
   { border: '#D4614A', text: '#F5A090' },
@@ -156,7 +157,7 @@ export default function VideoCard({ video, index = 0 }: { video: Video; index?: 
             overflow: 'hidden',
           }}
         >
-          {video.description}
+          {plainText(video.description)}
         </p>
 
         <p
